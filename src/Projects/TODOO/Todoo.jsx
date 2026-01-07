@@ -7,13 +7,13 @@ export const Todoo = () => {
   const [datetime, setDatetime] = useState("");
  
   const [task, setTask] = useState(()=>{
-      const rawData = localStorage.getItem(todokey)               // adding condition to save the data in localstorage
+      const rawData = localStorage.getItem(todokey) // adding condition to save the data in localstorage
       if(!rawData) return []
 
       return JSON.parse(rawData)
   });
 
-  //  Live Date & Time
+  //  Live Date & Time code
   useEffect(() => {
     const interval = setInterval(() => {
       const now = new Date();
@@ -37,7 +37,7 @@ export const Todoo = () => {
     const { content } = inputval;
     if (!content.trim()) return; // avoid empty tasks
 
-    // Check if already exists
+    // !Check if already exists
     const matchedval = task.find(
       (currtask) => currtask.content.toLowerCase() === content.toLowerCase()
     );
@@ -53,7 +53,7 @@ export const Todoo = () => {
     setInputval({ content: "", isdone: false }); // clear input
   }
 
-  // ✅ Toggle Done / Undo
+  //! ✅ Toggle Done / Undo
   function taskDone(currtask) {
     const updatedTasks = task.map((t) =>
       t.id === currtask.id ? { ...t, isdone: !t.isdone } : t
@@ -62,7 +62,7 @@ export const Todoo = () => {
     confirm("Your Task Completed ?")
   }
 
-  // ❌ Delete a Task
+  //! ❌ Delete a Task
   function deleteClick(content) {
     const updatedTasks = task.filter((t) => t.content !== content);
     setTask(updatedTasks);
